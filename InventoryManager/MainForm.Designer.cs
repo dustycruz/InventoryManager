@@ -1,4 +1,5 @@
 ﻿namespace InventoryManager
+
 {
     partial class MainForm
     {
@@ -29,35 +30,57 @@
         private void InitializeComponent()
         {
             grpProductEntry = new GroupBox();
+            lblStatus = new Label();
+            lblTotalQty = new Label();
+            btnResetFilter = new Button();
+            btnApplyFilter = new Button();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
+            cmbFilterCategory = new ComboBox();
+            lblCategoryFilter = new Label();
             chkConfirmDelete = new CheckBox();
             btnClearAll = new Button();
             btnUpdateStock = new Button();
             btnRemoveSelected = new Button();
             btnAddProduct = new Button();
-            numericUpDown1 = new NumericUpDown();
+            nudQuantity = new NumericUpDown();
             lblQuantity = new Label();
             cmbCategory = new ComboBox();
             lblCategory = new Label();
-            textBox1 = new TextBox();
+            txtName = new TextBox();
             lblName = new Label();
             lblSKU = new Label();
             txtSKU = new TextBox();
+            dgInventory = new DataGridView();
+            colSKU = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colCategory = new DataGridViewTextBoxColumn();
+            colQuantity = new DataGridViewTextBoxColumn();
             grpProductEntry.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgInventory).BeginInit();
             SuspendLayout();
             // 
             // grpProductEntry
             // 
+            grpProductEntry.Controls.Add(lblStatus);
+            grpProductEntry.Controls.Add(lblTotalQty);
+            grpProductEntry.Controls.Add(btnResetFilter);
+            grpProductEntry.Controls.Add(btnApplyFilter);
+            grpProductEntry.Controls.Add(txtSearch);
+            grpProductEntry.Controls.Add(lblSearch);
+            grpProductEntry.Controls.Add(cmbFilterCategory);
+            grpProductEntry.Controls.Add(lblCategoryFilter);
             grpProductEntry.Controls.Add(chkConfirmDelete);
             grpProductEntry.Controls.Add(btnClearAll);
             grpProductEntry.Controls.Add(btnUpdateStock);
             grpProductEntry.Controls.Add(btnRemoveSelected);
             grpProductEntry.Controls.Add(btnAddProduct);
-            grpProductEntry.Controls.Add(numericUpDown1);
+            grpProductEntry.Controls.Add(nudQuantity);
             grpProductEntry.Controls.Add(lblQuantity);
             grpProductEntry.Controls.Add(cmbCategory);
             grpProductEntry.Controls.Add(lblCategory);
-            grpProductEntry.Controls.Add(textBox1);
+            grpProductEntry.Controls.Add(txtName);
             grpProductEntry.Controls.Add(lblName);
             grpProductEntry.Controls.Add(lblSKU);
             grpProductEntry.Controls.Add(txtSKU);
@@ -68,14 +91,91 @@
             grpProductEntry.TabStop = false;
             grpProductEntry.Text = "Add/Update Product";
             // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(481, 207);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(44, 17);
+            lblStatus.TabIndex = 16;
+            lblStatus.Text = "Ready";
+            // 
+            // lblTotalQty
+            // 
+            lblTotalQty.AutoSize = true;
+            lblTotalQty.Location = new Point(481, 168);
+            lblTotalQty.Name = "lblTotalQty";
+            lblTotalQty.Size = new Size(106, 17);
+            lblTotalQty.TabIndex = 15;
+            lblTotalQty.Text = "Total Quantity : 0";
+            // 
+            // btnResetFilter
+            // 
+            btnResetFilter.Location = new Point(719, 89);
+            btnResetFilter.Name = "btnResetFilter";
+            btnResetFilter.Size = new Size(130, 25);
+            btnResetFilter.TabIndex = 14;
+            btnResetFilter.Text = "Reset Filter";
+            btnResetFilter.UseVisualStyleBackColor = true;
+            btnResetFilter.Click += btnResetFilter_Click;
+            // 
+            // btnApplyFilter
+            // 
+            btnApplyFilter.Location = new Point(583, 89);
+            btnApplyFilter.Name = "btnApplyFilter";
+            btnApplyFilter.Size = new Size(130, 25);
+            btnApplyFilter.TabIndex = 13;
+            btnApplyFilter.Text = "Apply Filter";
+            btnApplyFilter.UseVisualStyleBackColor = true;
+            btnApplyFilter.Click += btnApplyFilter_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(553, 18);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search by SKU/Name";
+            txtSearch.Size = new Size(310, 25);
+            txtSearch.TabIndex = 12;
+            txtSearch.TextChanged += InputChanged;
+            // 
+            // lblSearch
+            // 
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(497, 21);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(50, 17);
+            lblSearch.TabIndex = 11;
+            lblSearch.Text = "Search:";
+            // 
+            // cmbFilterCategory
+            // 
+            cmbFilterCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilterCategory.FormattingEnabled = true;
+            cmbFilterCategory.Items.AddRange(new object[] { "Food", "Beverage", "Household", "Stationery", "Misc", "All" });
+            cmbFilterCategory.Location = new Point(583, 54);
+            cmbFilterCategory.Name = "cmbFilterCategory";
+            cmbFilterCategory.Size = new Size(120, 25);
+            cmbFilterCategory.TabIndex = 10;
+            cmbFilterCategory.SelectedIndexChanged += InputChanged;
+            // 
+            // lblCategoryFilter
+            // 
+            lblCategoryFilter.AutoSize = true;
+            lblCategoryFilter.Location = new Point(481, 57);
+            lblCategoryFilter.Name = "lblCategoryFilter";
+            lblCategoryFilter.Size = new Size(96, 17);
+            lblCategoryFilter.TabIndex = 9;
+            lblCategoryFilter.Text = "Category Filter:";
+            lblCategoryFilter.Click += lblCategoryFilter_Click;
+            // 
             // chkConfirmDelete
             // 
             chkConfirmDelete.AutoSize = true;
             chkConfirmDelete.Location = new Point(6, 230);
             chkConfirmDelete.Name = "chkConfirmDelete";
-            chkConfirmDelete.Size = new Size(174, 21);
+            chkConfirmDelete.Size = new Size(162, 21);
             chkConfirmDelete.TabIndex = 2;
-            chkConfirmDelete.Text = "Confimer before deletion";
+            chkConfirmDelete.Text = "Confim before deletion";
             chkConfirmDelete.UseVisualStyleBackColor = true;
             // 
             // btnClearAll
@@ -86,6 +186,7 @@
             btnClearAll.TabIndex = 1;
             btnClearAll.Text = "Clear All";
             btnClearAll.UseVisualStyleBackColor = true;
+            btnClearAll.Click += btnClearAll_Click;
             // 
             // btnUpdateStock
             // 
@@ -95,6 +196,7 @@
             btnUpdateStock.TabIndex = 8;
             btnUpdateStock.Text = "Update Stock";
             btnUpdateStock.UseVisualStyleBackColor = true;
+            btnUpdateStock.Click += btnUpdateStock_Click;
             // 
             // btnRemoveSelected
             // 
@@ -104,6 +206,7 @@
             btnRemoveSelected.TabIndex = 0;
             btnRemoveSelected.Text = "Remove Selected";
             btnRemoveSelected.UseVisualStyleBackColor = true;
+            btnRemoveSelected.Click += btnRemoveSelected_Click;
             // 
             // btnAddProduct
             // 
@@ -114,15 +217,16 @@
             btnAddProduct.TabIndex = 7;
             btnAddProduct.Text = "Add Product";
             btnAddProduct.UseVisualStyleBackColor = false;
+            btnAddProduct.Click += btnAddProduct_Click;
             // 
-            // numericUpDown1
+            // nudQuantity
             // 
-            numericUpDown1.Location = new Point(76, 122);
-            numericUpDown1.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(120, 25);
-            numericUpDown1.TabIndex = 6;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            nudQuantity.Location = new Point(76, 122);
+            nudQuantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(120, 25);
+            nudQuantity.TabIndex = 6;
+            nudQuantity.ValueChanged += InputChanged;
             // 
             // lblQuantity
             // 
@@ -142,6 +246,7 @@
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(120, 25);
             cmbCategory.TabIndex = 4;
+            cmbCategory.TextChanged += InputChanged;
             // 
             // lblCategory
             // 
@@ -152,12 +257,13 @@
             lblCategory.TabIndex = 3;
             lblCategory.Text = "Category:";
             // 
-            // textBox1
+            // txtName
             // 
-            textBox1.Location = new Point(76, 51);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(310, 25);
-            textBox1.TabIndex = 2;
+            txtName.Location = new Point(76, 51);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(310, 25);
+            txtName.TabIndex = 2;
+            txtName.TextChanged += InputChanged;
             // 
             // lblName
             // 
@@ -184,12 +290,59 @@
             txtSKU.Name = "txtSKU";
             txtSKU.Size = new Size(310, 25);
             txtSKU.TabIndex = 0;
+            txtSKU.TextChanged += InputChanged;
+            // 
+            // dgInventory
+            // 
+            dgInventory.AllowUserToAddRows = false;
+            dgInventory.BackgroundColor = SystemColors.ButtonFace;
+            dgInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgInventory.Columns.AddRange(new DataGridViewColumn[] { colSKU, colName, colCategory, colQuantity });
+            dgInventory.Location = new Point(20, 362);
+            dgInventory.Name = "dgInventory";
+            dgInventory.ReadOnly = true;
+            dgInventory.RowHeadersVisible = false;
+            dgInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgInventory.Size = new Size(952, 200);
+            dgInventory.TabIndex = 1;
+            dgInventory.SelectionChanged += dgInventory_SelectionChanged;
+            // 
+            // colSKU
+            // 
+            colSKU.FillWeight = 121.827408F;
+            colSKU.HeaderText = "SKU";
+            colSKU.Name = "colSKU";
+            colSKU.ReadOnly = true;
+            colSKU.Width = 140;
+            // 
+            // colName
+            // 
+            colName.FillWeight = 78.17259F;
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 420;
+            // 
+            // colCategory
+            // 
+            colCategory.HeaderText = "Category";
+            colCategory.Name = "colCategory";
+            colCategory.ReadOnly = true;
+            colCategory.Width = 220;
+            // 
+            // colQuantity
+            // 
+            colQuantity.HeaderText = "Quantity";
+            colQuantity.Name = "colQuantity";
+            colQuantity.ReadOnly = true;
+            colQuantity.Width = 169;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 692);
+            Controls.Add(dgInventory);
             Controls.Add(grpProductEntry);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MainForm";
@@ -197,7 +350,8 @@
             Text = "Inventory Manager";
             grpProductEntry.ResumeLayout(false);
             grpProductEntry.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgInventory).EndInit();
             ResumeLayout(false);
         }
 
@@ -206,16 +360,29 @@
         private GroupBox grpProductEntry;
         private Label lblSKU;
         private TextBox txtSKU;
-        private TextBox textBox1;
+        private TextBox txtName;
         private Label lblName;
         private Label lblCategory;
         private ComboBox cmbCategory;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown nudQuantity;
         private Label lblQuantity;
         private Button btnAddProduct;
         private Button btnUpdateStock;
         private Button btnClearAll;
         private Button btnRemoveSelected;
         private CheckBox chkConfirmDelete;
+        private Label lblSearch;
+        private ComboBox cmbFilterCategory;
+        private Label lblCategoryFilter;
+        private TextBox txtSearch;
+        private Button btnResetFilter;
+        private Button btnApplyFilter;
+        private DataGridView dgInventory;
+        private DataGridViewTextBoxColumn colSKU;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colCategory;
+        private DataGridViewTextBoxColumn colQuantity;
+        private Label lblStatus;
+        private Label lblTotalQty;
     }
 }
