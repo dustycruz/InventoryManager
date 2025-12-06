@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             grpProductEntry = new GroupBox();
+            chkConfirmDelete = new CheckBox();
+            btnClearAll = new Button();
             btnUpdateStock = new Button();
+            btnRemoveSelected = new Button();
             btnAddProduct = new Button();
             numericUpDown1 = new NumericUpDown();
             lblQuantity = new Label();
@@ -39,11 +42,6 @@
             lblName = new Label();
             lblSKU = new Label();
             txtSKU = new TextBox();
-            grpManage = new GroupBox();
-            btnRemoveSelected = new Button();
-            btnClearAll = new Button();
-            chkConfirmDelete = new CheckBox();
-            lblManageInventory = new Label();
             grpProductEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
@@ -51,7 +49,6 @@
             // grpProductEntry
             // 
             grpProductEntry.Controls.Add(chkConfirmDelete);
-            grpProductEntry.Controls.Add(lblManageInventory);
             grpProductEntry.Controls.Add(btnClearAll);
             grpProductEntry.Controls.Add(btnUpdateStock);
             grpProductEntry.Controls.Add(btnRemoveSelected);
@@ -66,10 +63,29 @@
             grpProductEntry.Controls.Add(txtSKU);
             grpProductEntry.Location = new Point(20, 20);
             grpProductEntry.Name = "grpProductEntry";
-            grpProductEntry.Size = new Size(475, 314);
+            grpProductEntry.Size = new Size(952, 314);
             grpProductEntry.TabIndex = 0;
             grpProductEntry.TabStop = false;
             grpProductEntry.Text = "Add/Update Product";
+            // 
+            // chkConfirmDelete
+            // 
+            chkConfirmDelete.AutoSize = true;
+            chkConfirmDelete.Location = new Point(6, 230);
+            chkConfirmDelete.Name = "chkConfirmDelete";
+            chkConfirmDelete.Size = new Size(174, 21);
+            chkConfirmDelete.TabIndex = 2;
+            chkConfirmDelete.Text = "Confimer before deletion";
+            chkConfirmDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnClearAll
+            // 
+            btnClearAll.Location = new Point(142, 199);
+            btnClearAll.Name = "btnClearAll";
+            btnClearAll.Size = new Size(130, 25);
+            btnClearAll.TabIndex = 1;
+            btnClearAll.Text = "Clear All";
+            btnClearAll.UseVisualStyleBackColor = true;
             // 
             // btnUpdateStock
             // 
@@ -79,6 +95,15 @@
             btnUpdateStock.TabIndex = 8;
             btnUpdateStock.Text = "Update Stock";
             btnUpdateStock.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveSelected
+            // 
+            btnRemoveSelected.Location = new Point(6, 199);
+            btnRemoveSelected.Name = "btnRemoveSelected";
+            btnRemoveSelected.Size = new Size(130, 25);
+            btnRemoveSelected.TabIndex = 0;
+            btnRemoveSelected.Text = "Remove Selected";
+            btnRemoveSelected.UseVisualStyleBackColor = true;
             // 
             // btnAddProduct
             // 
@@ -160,58 +185,11 @@
             txtSKU.Size = new Size(310, 25);
             txtSKU.TabIndex = 0;
             // 
-            // grpManage
-            // 
-            grpManage.Location = new Point(533, 519);
-            grpManage.Name = "grpManage";
-            grpManage.Size = new Size(450, 120);
-            grpManage.TabIndex = 1;
-            grpManage.TabStop = false;
-            grpManage.Text = "Manage Inventory";
-            // 
-            // btnRemoveSelected
-            // 
-            btnRemoveSelected.Location = new Point(6, 229);
-            btnRemoveSelected.Name = "btnRemoveSelected";
-            btnRemoveSelected.Size = new Size(130, 25);
-            btnRemoveSelected.TabIndex = 0;
-            btnRemoveSelected.Text = "Remove Selected";
-            btnRemoveSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnClearAll
-            // 
-            btnClearAll.Location = new Point(142, 229);
-            btnClearAll.Name = "btnClearAll";
-            btnClearAll.Size = new Size(130, 25);
-            btnClearAll.TabIndex = 1;
-            btnClearAll.Text = "Clear All";
-            btnClearAll.UseVisualStyleBackColor = true;
-            // 
-            // chkConfirmDelete
-            // 
-            chkConfirmDelete.AutoSize = true;
-            chkConfirmDelete.Location = new Point(6, 260);
-            chkConfirmDelete.Name = "chkConfirmDelete";
-            chkConfirmDelete.Size = new Size(174, 21);
-            chkConfirmDelete.TabIndex = 2;
-            chkConfirmDelete.Text = "Confimer before deletion";
-            chkConfirmDelete.UseVisualStyleBackColor = true;
-            // 
-            // lblManageInventory
-            // 
-            lblManageInventory.AutoSize = true;
-            lblManageInventory.Location = new Point(6, 209);
-            lblManageInventory.Name = "lblManageInventory";
-            lblManageInventory.Size = new Size(113, 17);
-            lblManageInventory.TabIndex = 9;
-            lblManageInventory.Text = "Manage Inventory";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 692);
-            Controls.Add(grpManage);
             Controls.Add(grpProductEntry);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MainForm";
@@ -236,10 +214,8 @@
         private Label lblQuantity;
         private Button btnAddProduct;
         private Button btnUpdateStock;
-        private GroupBox grpManage;
         private Button btnClearAll;
         private Button btnRemoveSelected;
         private CheckBox chkConfirmDelete;
-        private Label lblManageInventory;
     }
 }
