@@ -48,9 +48,12 @@ namespace InventoryManager
             ClearInput();
             RenderInventory();
         }
+
         private void btnUpdateStock_Click(object sender, EventArgs e)
         {
             string sku = txtSKU.Text.Trim();
+            string name = txtName.Text.Trim();
+            string category = cmbCategory.SelectedItem?.ToString();
             int quantity = (int)nudQuantity.Value;
 
             var product = _catalog.FirstOrDefault(p => p.SKU.Equals(sku, StringComparison.OrdinalIgnoreCase));
@@ -63,11 +66,15 @@ namespace InventoryManager
 
             if (chkConfirmDelete.Checked)
             {
-                var result = MessageBox.Show($"Are you sure you want to update stock for {sku}?", "Confirm Update", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show($"Are you sure you want to update product {sku}?", "Confirm Update", MessageBoxButtons.YesNo);
                 if (result != DialogResult.Yes) return;
             }
 
+            // Update all fields
+            product.Name = name;
+            product.Category = category;
             product.Quantity = quantity;
+
             lblStatus.Text = $"Product {sku} updated!";
             RenderInventory();
         }
@@ -89,7 +96,7 @@ namespace InventoryManager
             foreach (DataGridViewRow row in dgInventory.SelectedRows)
             {
                 string sku = row.Cells["colSKU"].Value.ToString();
-                var product = _catalog.FirstOrDefault(p => p.SKU == sku);
+                var product = _catalog.FirstOrDefault(p => p.SKU.Equals(sku, StringComparison.OrdinalIgnoreCase));
                 if (product != null) _catalog.Remove(product);
             }
 
@@ -150,7 +157,7 @@ namespace InventoryManager
                                && cmbCategory.SelectedItem != null;
 
             btnAddProduct.Enabled = inputsValid;
-            btnUpdateStock.Enabled = !string.IsNullOrWhiteSpace(txtSKU.Text);
+            btnUpdateStock.Enabled = _catalog.Any(p => p.SKU.Equals(txtSKU.Text.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         private void RenderInventory()
